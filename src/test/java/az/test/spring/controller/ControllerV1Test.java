@@ -18,9 +18,19 @@ public class ControllerV1Test {
     private MockMvc mockMvc;
 
     @Test
-    public void getHelloTest() throws Exception {
-        mockMvc.perform(MockMvcRequestBuilders.get("/").accept(MediaType.APPLICATION_JSON))
+    public void getIndexTest() throws Exception {
+        mockMvc.perform(MockMvcRequestBuilders.get("/")
+                .accept(MediaType.TEXT_PLAIN_VALUE))
                 .andExpect(MockMvcResultMatchers.status().isOk())
                 .andExpect(MockMvcResultMatchers.content().string(Matchers.equalTo("Spring web application. Hello!")));
+    }
+
+    @Test
+    public void storeDataTest() throws Exception {
+        mockMvc.perform(MockMvcRequestBuilders.post("/foobar", "someString")
+                .contentType(MediaType.TEXT_PLAIN_VALUE)
+                .accept(MediaType.TEXT_PLAIN_VALUE))
+                .andExpect(MockMvcResultMatchers.status().isOk())
+                .andExpect(MockMvcResultMatchers.content().string(Matchers.equalTo("")));
     }
 }
