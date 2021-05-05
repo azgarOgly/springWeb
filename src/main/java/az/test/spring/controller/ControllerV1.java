@@ -2,6 +2,7 @@ package az.test.spring.controller;
 
 import az.test.spring.persister.DataPersister;
 import lombok.RequiredArgsConstructor;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -16,6 +17,7 @@ import java.util.List;
 @RequiredArgsConstructor
 public class ControllerV1 {
 
+    @Qualifier("fileDataPersister")
     final DataPersister dataPersister;
 
     @RequestMapping("/")

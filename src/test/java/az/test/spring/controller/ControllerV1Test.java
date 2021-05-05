@@ -27,8 +27,9 @@ public class ControllerV1Test {
 
     @Test
     public void storeDataTest() throws Exception {
-        mockMvc.perform(MockMvcRequestBuilders.post("/foobar", "someString")
+        mockMvc.perform(MockMvcRequestBuilders.post("/foobar")
                 .contentType(MediaType.TEXT_PLAIN_VALUE)
+                .content("someString\n")
                 .accept(MediaType.TEXT_PLAIN_VALUE))
                 .andExpect(MockMvcResultMatchers.status().isOk())
                 .andExpect(MockMvcResultMatchers.content().string(Matchers.equalTo("")));
