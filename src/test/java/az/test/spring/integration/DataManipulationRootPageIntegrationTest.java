@@ -12,7 +12,7 @@ import org.springframework.http.ResponseEntity;
 import java.net.URL;
 
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
-public class IndexPageIntegrationTest {
+public class DataManipulationRootPageIntegrationTest {
 
     @LocalServerPort
     private int port;
@@ -23,12 +23,12 @@ public class IndexPageIntegrationTest {
 
     @BeforeEach
     public void setUp() throws Exception {
-        this.baseUrl = new URL(String.format("http://localhost:%d/", port));
+        this.baseUrl = new URL(String.format("http://localhost:%d/data", port));
     }
 
     @Test
     public void getIndex() {
         ResponseEntity<String> response = template.getForEntity(baseUrl.toString(), String.class);
-        Assertions.assertThat(response.getBody()).isEqualTo("Spring web application. Hello!");
+        Assertions.assertThat(response.getBody()).isEqualTo("Spring web application. Data manipulation controller.");
     }
 }

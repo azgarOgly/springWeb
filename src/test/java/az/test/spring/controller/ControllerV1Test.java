@@ -19,19 +19,20 @@ public class ControllerV1Test {
 
     @Test
     public void getIndexTest() throws Exception {
-        mockMvc.perform(MockMvcRequestBuilders.get("/")
+        mockMvc.perform(MockMvcRequestBuilders.get("/data")
                 .accept(MediaType.TEXT_PLAIN_VALUE))
                 .andExpect(MockMvcResultMatchers.status().isOk())
-                .andExpect(MockMvcResultMatchers.content().string(Matchers.equalTo("Spring web application. Hello!")));
+                .andExpect(MockMvcResultMatchers.content().string(Matchers.equalTo("Spring web application. Data manipulation controller.")));
     }
 
     @Test
     public void storeDataTest() throws Exception {
-        mockMvc.perform(MockMvcRequestBuilders.post("/foobar")
+        mockMvc.perform(MockMvcRequestBuilders.post("/data/foobar")
                 .contentType(MediaType.TEXT_PLAIN_VALUE)
                 .content("someString\n")
                 .accept(MediaType.TEXT_PLAIN_VALUE))
                 .andExpect(MockMvcResultMatchers.status().isOk())
                 .andExpect(MockMvcResultMatchers.content().string(Matchers.equalTo("")));
+        // TODO mock persister and check if it is called
     }
 }
