@@ -19,12 +19,12 @@ public class ControllerV1 {
     @Qualifier("fileDataPersister")
     final DataPersister dataPersister;
 
-    @RequestMapping("/")
+    @RequestMapping("/data")
     public String index() {
-        return "Spring web application. Hello!";
+        return "Spring web application. Data manipulation controller.";
     }
 
-    @PostMapping(path = "/{streamName}",
+    @PostMapping(path = "/data/{streamName}",
             consumes = MediaType.TEXT_PLAIN_VALUE)
     public void storeData(@PathVariable String streamName, @RequestBody String body) {
         dataPersister.store(streamName, body);
